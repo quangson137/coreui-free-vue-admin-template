@@ -69,14 +69,21 @@
 </template>
 
 <script>
+import { googleOneTap } from 'vue3-google-login'
+
 export default {
   name: 'Login',
   methods: {
     async login() {
-      // const googleUser = await this.$gAuth.signIn()
-      console.log('googleUser')
-      localStorage.setItem('jwt', 'Ahihi')
-      this.$router.push('/')
+      googleOneTap()
+        .then((response) => {
+          console.log('Handle response', response)
+          localStorage.setItem('jwt', 'Ahihi')
+          this.$router.push('/')
+        })
+        .catch((e) => {
+          console.log('Error', e)
+        })
     },
   },
 }

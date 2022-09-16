@@ -8,15 +8,15 @@ import CIcon from '@coreui/icons-vue'
 import { iconsSet as icons } from '@/assets/icons'
 import DocsCallout from '@/components/DocsCallout'
 import DocsExample from '@/components/DocsExample'
-// import GAuth from 'vue3-google-oauth2'
-//
-// const gAuthOption = {
-//   clientId:
-//     '991236955760-mr048renbcsorqpqqkjm1q19i6lblano.apps.googleusercontent.com',
-// }
+import GAuth from 'vue3-google-login'
+
+const gAuthOption = {
+  clientId:
+    '991587744543-s1ng0b8r4pm7hfu25bhhc4p8hu1ljs29.apps.googleusercontent.com',
+}
 
 const app = createApp(App)
-// app.use(GAuth, gAuthOption)
+app.use(GAuth, gAuthOption)
 app.use(store)
 app.use(router)
 app.use(CoreuiVue)
