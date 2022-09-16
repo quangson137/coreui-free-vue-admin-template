@@ -29,12 +29,17 @@
                     />
                   </CInputGroup>
                   <CRow>
-                    <CCol :xs="6">
+                    <CCol :xs="3">
                       <CButton color="primary" class="px-4"> Login </CButton>
                     </CCol>
-                    <CCol :xs="6" class="text-right">
+                    <CCol :xs="5" class="text-right">
                       <CButton color="link" class="px-0">
                         Forgot password?
+                      </CButton>
+                    </CCol>
+                    <CCol :xs="3">
+                      <CButton color="secondary" @click="login" class="px-4">
+                        Google
                       </CButton>
                     </CCol>
                   </CRow>
@@ -66,5 +71,13 @@
 <script>
 export default {
   name: 'Login',
+  methods: {
+    async login() {
+      // const googleUser = await this.$gAuth.signIn()
+      console.log('googleUser')
+      localStorage.setItem('jwt', 'Ahihi')
+      this.$router.push('/')
+    },
+  },
 }
 </script>

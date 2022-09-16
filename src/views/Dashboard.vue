@@ -278,6 +278,7 @@ import avatar6 from '@/assets/images/avatars/6.jpg'
 import MainChartExample from './charts/MainChartExample'
 import WidgetsStatsA from './widgets/WidgetsStatsTypeA.vue'
 import WidgetsStatsD from './widgets/WidgetsStatsTypeD.vue'
+import { inject } from 'vue'
 
 export default {
   name: 'Dashboard',
@@ -402,11 +403,14 @@ export default {
       },
     ]
 
+    const Vue3GoogleOauth = inject('Vue3GoogleOauth')
+
     return {
       tableExample,
       progressGroupExample1,
       progressGroupExample2,
       progressGroupExample3,
+      Vue3GoogleOauth,
     }
   },
 }

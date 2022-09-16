@@ -260,6 +260,9 @@ const routes = [
         component: () => import('@/views/widgets/Widgets.vue'),
       },
     ],
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/pages',
@@ -302,6 +305,26 @@ const router = createRouter({
     // always scroll to top
     return { top: 0 }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !localStorage.getItem(`jwt`)
+  ) {
+    next({
+      path: '/pages/login',
+    })
+  } else if (localStorage.getItem('jwt')) {
+    switch (to.name) {
+      case 'Login' || 'Register':
+        next({ path: '/' })
+        break
+      default:
+        next()
+        break
+    }
+  } else next()
 })
 
 export default router
