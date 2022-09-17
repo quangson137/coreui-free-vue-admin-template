@@ -38,9 +38,11 @@
                       </CButton>
                     </CCol>
                     <CCol :xs="3">
-                      <CButton color="secondary" @click="login" class="px-4">
-                        Google
-                      </CButton>
+                      <GoogleLogin :callback="googleLoginCallback">
+                        <CButton color="secondary" class="px-4">
+                          Google
+                        </CButton>
+                      </GoogleLogin>
                     </CCol>
                   </CRow>
                 </CForm>
@@ -69,22 +71,27 @@
 </template>
 
 <script>
-import { googleOneTap } from 'vue3-google-login'
-
 export default {
   name: 'Login',
+
   methods: {
-    async login() {
-      googleOneTap()
-        .then((response) => {
-          console.log('Handle response', response)
-          localStorage.setItem('jwt', 'Ahihi')
-          this.$router.push('/')
-        })
-        .catch((e) => {
-          console.log('Error', e)
-        })
+    async googleLoginCallback(response) {
+      localStorage.setItem('jwt', response.credential)
+      this.$router.push('/')
     },
   },
+  // methods: {
+  //   async login() {
+  //     googleOneTap()
+  //       .then((response) => {
+  //         console.log('Handle response', response)
+  //         localStorage.setItem('jwt', 'Ahihi')
+  //         this.$router.push('/')
+  //       })
+  //       .catch((e) => {
+  //         console.log('Error', e)
+  //       })
+  //   },
+  // },
 }
 </script>
